@@ -9,7 +9,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-grow-bmp-path-marking-tlv-00"
+<rfc category="std" docName="draft-ietf-grow-bmp-path-marking-tlv-latest"
      ipr="trust200902">
   <front>
     <title abbrev="BMP path status tlv">BMP Extension for Path Status

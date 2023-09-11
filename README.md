@@ -2,8 +2,5 @@
 BMP path-marking draft
 
 # Instructions
-pip install -r requirements.txt
-xml2rfc draft-ietf-grow-bmp-path-marking-tlv.xml --text
+run make to create the latest files.
 
-# TODO
-Improve CI of the repo
