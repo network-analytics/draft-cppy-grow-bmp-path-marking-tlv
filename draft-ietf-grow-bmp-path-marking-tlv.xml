@@ -113,7 +113,7 @@
       </address>
     </author>
 
-    <date day="11" month="Sep" year="2023"/>
+    <date day="18" month="March" year="2024"/>
 
     <abstract>
       <t>The BGP Monitoring Protocol (BMP) provides an interface for obtaining
@@ -221,6 +221,8 @@
 | 0x00000100 | Filtered in inbound policy  |
 | 0x00000200 | Filtered in outbound policy |
 | 0x00000400 | Invalid ROV                 |
+| 0x00000800 | Stale                       |
+| 0x00001000 | Suppressed                  |
 +------------+-----------------------------+
 
 Table 1: IANA-Registered Path Type ]]></artwork>
@@ -261,6 +263,13 @@ Table 1: IANA-Registered Path Type ]]></artwork>
             prefix without the new paths implicitly replacing any previous
             ones, the add-path status is applied <xref target="RFC7911"/>.</t>
 
+            <t>Stale refers to a path which has been declared stale by the BGP
+            Graceful Restart mechanism as described in Section 4.1 of <xref
+            target="RFC4724"/>.</t>
+
+            <t>Suppressed refers to a path which has been declared suppressed
+            by the BGP Route Flap Damping mechanism as described in Section
+            2.2 of <xref target="RFC2439"/>.</t>
           </list>
 
           The path status TLV does not force a BMP client to send any of
@@ -271,17 +280,17 @@ Table 1: IANA-Registered Path Type ]]></artwork>
             <artwork align="center"><![CDATA[+----------+-----------------------------------------------------+
 |   Value  | Reason code                                         |
 +----------------------------------------------------------------+
-| [0x0007] | invalid for AS loop                                 |
-| [0x0007] | invalid for unresolvable nexthop                    |
-| [0x0016] | not preferred for Local preference                  |
-| [0x0014] | not preferred for AS Path Length                    |
-| [0x0013] | not preferred for origin                            |
-| [0x0012] | not preferred for MED                               |
-| [0x0011] | not preferred for peer type                         |
-| [0x0010] | not preferred for IGP cost                          |
-| [0x000E] | not preferred for router ID                         |
-| [0x000D] | not preferred for peer address                      |
-| [0x0020] | not preferred for AIGP                              |
+| [0x0001] | invalid for AS loop                                 |
+| [0x0002] | invalid for unresolvable nexthop                    |
+| [0x0003] | not preferred for Local preference                  |
+| [0x0004] | not preferred for AS Path Length                    |
+| [0x0005] | not preferred for origin                            |
+| [0x0006] | not preferred for MED                               |
+| [0x0007] | not preferred for peer type                         |
+| [0x0008] | not preferred for IGP cost                          |
+| [0x0009] | not preferred for router ID                         |
+| [0x000A] | not preferred for peer address                      |
+| [0x000B] | not preferred for AIGP                              |
 +----------+-----------------------------------------------------+
 
                Table 2: IANA-Registered Reason Code ]]></artwork>
@@ -467,6 +476,10 @@ Table 1: IANA-Registered Path Type ]]></artwork>
       <?rfc include='reference.I-D.lapukhov-bgp-ecmp-considerations.xml'?>
 
       <?rfc include='reference.RFC.7911.xml'?>
+
+      <?rfc include='reference.RFC.4724.xml'?>
+
+      <?rfc include='reference.RFC.2439.xml'?>
 
       <?rfc include='reference.I-D.ietf-grow-bmp-tlv-ebit.xml'?>
     </references>
