@@ -113,7 +113,7 @@
       </address>
     </author>
 
-    <date day="18" month="March" year="2024"/>
+    <date day="16" month="September" year="2024"/>
 
     <abstract>
       <t>The BGP Monitoring Protocol (BMP) provides an interface for obtaining
@@ -439,7 +439,7 @@ Table 1: IANA-Registered Path Type ]]></artwork>
     </section>
 
     <section title="Acknowledgments">
-      <t>We would like to thank Jeff Haas and  Maxence Younsi  for their
+      <t>We would like to thank Jeff Haas and  Maxence Younsi for their
           valuable comments.</t>
     </section>
 
