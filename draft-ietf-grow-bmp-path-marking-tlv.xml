@@ -481,6 +481,13 @@
                 does not enforce strict validity rules for code combinations to
                 accommodate the diversity of BGP implementations.</t>
 
+            <t>The experience during testing of this TLV revealed scenarios
+            where implementations might combine codes differently than
+            originally anticipated. For example, one test implementation marked
+            routes with both 'Invalid' and 'Best' status bits set, which is
+                contradictory from the point of view of <xref
+                    target="RFC4271"/>, but made sense for their specific
+                    implementation.</t>
 
             <t> Operators should apply their own validation checks on the data
                 from TLVs and discuss potential inconsistencies with their
