@@ -113,7 +113,7 @@
       </address>
     </author>
 
-    <date day="23" month="April" year="2025"/>
+    <date day="25" month="August" year="2025"/>
 
     <abstract>
       <t>The BGP Monitoring Protocol (BMP) provides an interface for obtaining
@@ -159,7 +159,7 @@
       BMP Route Monitoring (RM) Message  <xref target="RFC7854">RFC7854</xref>.</t>
     </section>
 
-    <section title="Path Status TLV encoding">
+    <section title="Path Status TLV encoding" anchor="path_status">
 
         <t>The path status TLV follows the common header defined in <xref target="I-D.ietf-grow-bmp-tlv"/> and <xref target="I-D.ietf-grow-bmp-tlv-ebit"/>.</t>
 
@@ -563,11 +563,17 @@
     </section>
 
     <section anchor="IANA" title="IANA Considerations">
-      <t>This document requests that IANA assign the following new parameters
-      to the BMP parameters name space.</t>
+      <t>This document requests that IANA assign the following new TLV type
+      to the BMP Route Monitoring TLVs.</t>
 
-      <t>Type = TBD1 (15 Bits): indicates that it is the IANA-registered Path
-      Status TLV.</t>
+      <t>Type = 5: indicates that this is the IANA-registered Path
+          marking TLV. The value field is defined in <xref target="path_status"/>.</t>
+
+      <t> RFC Editor and IANA registry note: The registry is created with <xref
+          target="I-D.ietf-grow-bmp-tlv" section="10"/> and populated with
+          initial values 1-4. This document adds value 5 to the registry.
+          Please remove this sentence before publishing the document as RFC.
+      </t>
     </section>
 
     <section anchor="Security" title="Security Considerations">
