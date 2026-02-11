@@ -725,6 +725,89 @@
           initial values 1-4. This document adds value 5 to the registry.
           Please remove this sentence before publishing the document as RFC.
       </t>
+
+  <t>
+    In addition, this document requests IANA to assign new statistic types in the
+    <eref target="https://www.iana.org/assignments/bmp-parameters/bmp-parameters.xhtml#statistics-types">
+    BMP Statistics Types</eref> registry, part of the
+    <eref target="https://www.iana.org/assignments/bmp-parameters/bmp-parameters.xhtml">
+    BMP parameters</eref> registry group, for the Path Marking Statistics defined
+    in <xref target="path-marking-stats"/>.
+  </t>
+
+  <t>
+    Unless otherwise stated, all statistics defined below are 64-bit unsigned integer
+    gauges whose Stat Data value field and Stat Length follow the rules in
+    <xref target="RFC7854">Section 4.8 of</xref>.
+  </t>
+
+  <t>
+    This document requests IANA to assign the following new BMP Statistics Types and
+    to update the registry to reference the RFC number of this document:
+  </t>
+
+  <t>
+    <list style="symbols">
+      <t>
+        Type &IANA_PM_STATS_INVALID;: Current number of paths for which the Path Status
+        TLV has the <spanx style="verb">Invalid</spanx> status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_BEST;: Current number of paths for which the Path Status
+        TLV has the <spanx style="verb">Best</spanx> status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_NONSELECTED;: Current number of paths for which the Path
+        Status TLV has the <spanx style="verb">Nonselected</spanx> status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_PRIMARY;: Current number of paths for which the Path Status
+        TLV has the <spanx style="verb">Primary</spanx> status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_BACKUP;: Current number of paths for which the Path Status
+        TLV has the <spanx style="verb">Backup</spanx> status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_NONINSTALLED;: Current number of paths for which the Path
+        Status TLV has the <spanx style="verb">Non-installed</spanx> status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_BEST_EXTERNAL;: Current number of paths for which the Path
+        Status TLV has the <spanx style="verb">Best-external</spanx> status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_ADD_PATH;: Current number of paths for which the Path Status
+        TLV has the <spanx style="verb">Add-Path</spanx> status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_FILTERED_IN;: Current number of paths for which the Path
+        Status TLV has the <spanx style="verb">Filtered in inbound policy</spanx>
+        status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_FILTERED_OUT;: Current number of paths for which the Path
+        Status TLV has the <spanx style="verb">Filtered in outbound policy</spanx>
+        status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_STALE;: Current number of paths for which the Path Status TLV
+        has the <spanx style="verb">Stale</spanx> status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_SUPPRESSED;: Current number of paths for which the Path Status
+        TLV has the <spanx style="verb">Suppressed</spanx> status bit set.
+      </t>
+      <t>
+        Type &IANA_PM_STATS_TOT_MARKED;: Current number of paths that carry a Path Status
+        TLV with at least one status bit set (paths that are explicitly marked).
+      </t>
+      <t>
+        Type &IANA_PM_STATS_TOT_UNMARKED;: Current number of paths that either do not carry
+        a Path Status TLV or carry a Path Status TLV with all bits set to zero.
+      </t>
+    </list>
+  </t>
     </section>
 
     <section anchor="Security" title="Security Considerations">
