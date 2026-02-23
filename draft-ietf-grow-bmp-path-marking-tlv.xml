@@ -129,11 +129,11 @@
       </address>
     </author>
 
-    <date day="25" month="August" year="2025"/>
+    <date day="23" month="February" year="2026"/>
 
     <abstract>
       <t>The BGP Monitoring Protocol (BMP) provides an interface for obtaining
-      BGP path information, which is is conveyed through  BMP Route
+      BGP path information, which is conveyed through  BMP Route
       Monitoring (RM) messages. This document specifies a BMP extension to
       convey the status of a path after being processed by the BGP process. 
       </t>
@@ -142,21 +142,21 @@
     <note title="Requirements Language">
       <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
       "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-      "OPTIONAL" in this document are to be interpreted as described in BCP 14
-      <xref target="RFC2119">RFC 2119</xref> <xref target="RFC8174">RFC
-      8174</xref> when, and only when, they appear in all capitals, as shown
+      "OPTIONAL" in this document are to be interpreted as described in BCP 14,
+      RFC2119 <xref target="RFC2119"/> and RFC8174  <xref target="RFC8174"/> 
+      when, and only when, they appear in all capitals, as shown
       here.</t>
     </note>
   </front>
 
   <middle>
     <section title="Introduction">
-      <t>Multiple paths with different path status, (e.g., the "best path",
-      "backup path", "invalid", and so on), may co-exist for a given prefix in
+      <t>Multiple paths with different path statuses (e.g., the "best path",
+      "backup path", "invalid", and so on) may co-exist for a given prefix in
       the BGP RIBs after being processed by the BGP decision process.  The path
-      status information is not carried in the BGP Update Message
-      <xref target="RFC4271">RFC4271</xref> or in the BMP Route Monitoring Message <xref
-          target="RFC7854">RFC7854</xref>.</t>
+      status information is not carried in the BGP UPDATE Message
+      <xref target="RFC4271"/> or in the BMP Route Monitoring Message <xref
+          target="RFC7854"/>.</t>
 
       <t>External systems can use the path status for various applications.
       For example, operators commonly use path status during  
@@ -172,12 +172,15 @@
 
       <t>This document defines a Path Status TLV to convey the BGP
       path status to a BMP server. The BMP Path Status TLV is carried in the
-      BMP Route Monitoring (RM) Message  <xref target="RFC7854">RFC7854</xref>.</t>
+      BMP Route Monitoring (RM) Message  <xref target="RFC7854"/>.
+      </t>
     </section>
 
     <section title="Path Status TLV encoding" anchor="path_status">
 
-        <t>The path status TLV follows the common header defined in <xref target="I-D.ietf-grow-bmp-tlv"/> and <xref target="I-D.ietf-grow-bmp-tlv-ebit"/>.</t>
+        <t>The path status TLV follows the common header defined in <xref
+            target="I-D.ietf-grow-bmp-tlv"/> and <xref
+                target="I-D.ietf-grow-bmp-tlv-ebit"/>.</t>
 
         <figure>
             <artwork align="center"><![CDATA[ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -196,9 +199,9 @@
             <t>The common TLV header that can encode IANA-registered TLV or Enterprise-specific markings using <xref target="I-D.ietf-grow-bmp-tlv-ebit"/>.</t>
 
             <t>Path Status (4 Octets): indicates the path status of the BGP
-            Update PDU encapsulated in the RM Message. Path status are encoded
+            Update PDU encapsulated in the RM Message. The path status is encoded
             using a bitmap where each bit position encodes a specific role of the path. 
-            Multiple bits may be set when multiple path status apply to a path.
+            Multiple bits may be set when multiple path statuses apply to a path.
             All zeros are reserved for paths with no marking.</t>
 
             <t>Reason Code (2 Octets, optional): indicates the reason of
@@ -220,7 +223,7 @@
   <thead>
     <tr>
       <th align="center">Value</th>
-      <th align="left">Path Type</th>
+      <th align="left">Path Status</th>
     </tr>
   </thead>
   <tbody>
@@ -313,13 +316,16 @@
             defined in <xref
             target="I-D.ietf-idr-best-external">draft-ietf-idr-best-external</xref>.</t>
 
-            <t>The advertisement of multiple paths for the same address
-            prefix without the new paths implicitly replacing any previous
-            ones, the add-path status is applied <xref target="RFC7911"/>.</t>
+            <t>The add-path status is applied when the advertisement includes
+            multiple paths for the same address prefix without the new
+            paths implicitly replacing any previous ones 
+            <xref target="RFC7911"/>.</t>
 
-            <t>Filtered in inbound policy routes are those that are filtered in the Adj-RIB-In policy</t>
+            <t>Filtered in inbound policy routes are those that are filtered in
+                the Adj-RIB-In policy.</t>
         
-            <t>Filtered in outbound policy routes are those that are filtered in the Adj-RIB-Out policy</t>
+            <t>Filtered in outbound policy routes are those that are filtered
+                in the Adj-RIB-Out policy.</t>
 
             <t>Stale routes refer to paths which have been declared stale by the BGP
             Graceful Restart mechanism, as described in <xref
@@ -335,26 +341,26 @@
 
         <section title="IANA reason codes">
            
-            <t><xref target="reasons_codes"/> includes a list of IANA reason codes. This list can be
-                extended in future documents. This document includes a brief
-                explanation of each code and the path status they are directed
-                to explain. Please see <xref target='path_inconsistencies'/>
-                    for notes on potentially inconsistencies on the path
-                    marking data</t>
+            <t><xref target="reasons_codes"/> includes a list of IANA reason
+            codes.  This list can be extended in future documents.  This
+            document includes a brief explanation of each code and the path
+            status they are intended to explain. Please see <xref
+                target='path_inconsistencies'/> for notes on potentially
+                inconsistencies in the path marking data.</t>
 
         <list style="symbols">
 
             <t>Invalid routes due to AS loop and unresolvable nexthop are
                 defined in <xref target="RFC4271" sectionFormat="of"
                     section="9.1.2"/>. These codes target routes of type
-                    "Invalid".  </t>
+                    "Invalid".</t>
 
             <t>The reason codes starting with 'not preferred' are aimed at paths
             not selected as best, and describe the reason they were ranked lower
             in the decision process. AIGP is explained in <xref
                 target="RFC7311">RFC7311</xref>. The rest of the codes are
                     described in <xref target="RFC4271" sectionFormat="of"
-                        section="9.1.2.2."/></t>
+                        section="9.1.2.2"/>.</t>
 
         </list>
 
@@ -444,7 +450,7 @@
       counter that reflects the number of paths currently marked with that
       status.  These counters are conceptually similar to the per-status
       gauges defined for primary, backup, stale, and suppressed routes in
-      the BMP RIB statistics document.
+      the BMP RIB statistics document <xref target="I-D.ietf-grow-bmp-bgp-rib-stats"/>.
     </t>
 
     <t>
@@ -559,7 +565,7 @@
             implementations.</t>
 
         <t>An implementation of the BMP path marking TLV may not fully support
-        marking of all status defined in <xref target="status_codes"/> or
+        marking of all statuses defined in <xref target="status_codes"/> or
         any future extensions. Similarly, an implementation may choose to
         support the inclusion of the reason code (for which support is also
             optional), without necessarily incorporating any of the reason
@@ -572,11 +578,11 @@
             potentially addressed in a subsequent document.</t>
 
         <t>The remainder of this section covers additional points related
-            to the implementation of the BMP Path marking TLV.</t>
+            to the implementation of the BMP Path Marking TLV.</t>
 
-        <section title="Configuration of BMP path marking">
+        <section title="Configuration of BMP Path Marking">
 
-            <t>Implementations supporting the BMP path marking TLV should
+            <t>Implementations supporting the BMP Path Marking TLV should
             provide an option for enabling/disabling the Path Marking
                 TLV over BMP monitoring sessions. Furthermore,  the configuration options
             for this TLV should provide the means to enable/disable the
@@ -591,7 +597,7 @@
             <t>The Path Marking TLV introduces metadata on the routes, which 
             could increase the churn (<xref target="RFC4098" sectionFormat="of"
                 section="8.1.6">RFC4098</xref>) of paths within the BMP
-                session. For instance, if path marking is configured, and a
+                session. For instance, if BMP Path Marking is configured, and a
                 non-installed path changes status to a backup route, the
                 device should send an update about this path with the new
                 markings, even if its BGP attributes remain unchanged.  Enabling reason
@@ -653,8 +659,8 @@
             specific status from specific RIBs. Some implementations might be
             able to mark some status over one RIB while others do it on others.
             For instance, some might be able to mark Adj-RIB-In filtered routes
-            when obtained from the Adj-RIB-In pre, while other could do it only
-            from the Adj-RIB-In post. To remove ambiguities in implementations,
+            when obtained from the Adj-RIB-In pre-policy, while others could do it only
+            from the Adj-RIB-In post-policy. To remove ambiguities in implementations,
             it is recommended that the meaning of status (and reason codes)
                 does not depend on the origin RIB of a route.</t>
 
@@ -839,6 +845,8 @@
       <?rfc include='reference.RFC.7311.xml'?>
 
       <?rfc include='reference.I-D.ietf-grow-bmp-tlv-ebit.xml'?>
+
+      <?rfc include='reference.I-D.ietf-grow-bmp-bgp-rib-stats'?>
     </references>
     <references title="Informative References">
       <?rfc include='reference.I-D.ietf-idr-best-external.xml'?>
