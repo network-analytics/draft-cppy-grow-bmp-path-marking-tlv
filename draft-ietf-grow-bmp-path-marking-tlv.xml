@@ -421,10 +421,10 @@
 <section anchor="path-marking-stats" title="Path Marking Statistics">
 
   <t>
-    This section defines statistics to account for the usage of the Path
-    Status TLV in Route Monitoring (RM) messages. The statistics specified
-    in this section are exported by BMP speakers using the Stats Reports
-    message type defined in <xref target="RFC7854">Section 4.8 of</xref>.
+    This section defines statistics to account and summarize Path Status
+    in BGP Local-RIB. The statistics specified in this section are
+    exported by BMP speakers using the Stats Reports message type defined
+    in <xref target="RFC7854">Section 4.8 of</xref>.
   </t>
 
   <t>
@@ -444,7 +444,8 @@
       counter that reflects the number of paths currently marked with that
       status.  These counters are conceptually similar to the per-status
       gauges defined for primary, backup, stale, and suppressed routes in
-      the BMP RIB statistics document.
+      <xref target="I-D.ietf-grow-bmp-bgp-rib-stats">Advanced BGP Monitoring
+      Protocol (BMP) Statistics Types</xref>.
     </t>
 
     <t>
@@ -848,6 +849,8 @@
       <?rfc include='reference.I-D.ietf-rtgwg-bgp-pic.xml'?>
 
       <?rfc include='reference.RFC.4098.xml'?>
+
+      <?rfc include='reference.I-D.ietf-grow-bmp-bgp-rib-stats.xml'?>
     </references>
   </back>
 </rfc>
